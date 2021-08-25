@@ -1,6 +1,5 @@
-import { deepdiff, DiffItem } from '@gera2ld/deepdiff';
-import { render, FormatJSONOptions, ItemTypes } from '@gera2ld/format-json';
 import React, { useEffect, useState } from 'react';
+import { DeepDiff } from '../src/index';
 
 interface JSONInputItem {
   value: string;
@@ -8,21 +7,6 @@ interface JSONInputItem {
   obj?: any;
   error?: boolean;
 }
-
-const jsonFormatOptions: FormatJSONOptions = {
-  indent: 2,
-  quoteAsNeeded: false,
-  quote: '"',
-  trailing: false,
-  template: false,
-  onData(item) {
-    item.data = [
-      { type: 'pathStart', value: '', path: item.path },
-      ...item.data,
-      { type: 'pathEnd', value: '', path: item.path },
-    ];
-  },
-};
 
 const defaultValues: JSONInputItem[] = [
   {
@@ -43,37 +27,16 @@ const defaultValues: JSONInputItem[] = [
   },
 ];
 
-function JsonDiff({ obj1, obj2 }: {
-  obj1: any;
-  obj2: any;
-}) {
-  if (!obj1 || !obj2) return null;
-  const diff = deepdiff(obj1, obj2);
-  const root1 = render(obj1, jsonFormatOptions);
-  const root2 = render(obj2, jsonFormatOptions);
-  console.log(root1, root2);
-  const blocks = [];
-  {
-    let line = [];
-    for (const item of root1.data) {
-      if (item.type === ItemTypes.BR) {
-        lines.push(line.join(''));
-        line = [];
-      } else {
-        line.push(item.value);
-      }
-    }
-    if (line.length) lines.push(line.join(''));
-  }
+function ExternalLink({ href, children }: React.PropsWithChildren<{
+  href: string;
+}>) {
   return (
-    <>
-      {lines.map((line, i) => <div key={i}>{line}</div>)}
-    </>
+    <a href={href} target="_blank" rel="noopener noreferrer">{children}</a>
   );
 }
 
 export function App() {
-  const [items, setItems] = useState(defaultValues);
+  const [items, setItems] = useState<JSONInputItem[]>(defaultValues);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -114,6 +77,12 @@ export function App() {
 
   return (
     <div className="flex flex-col h-screen mx-auto max-w-screen-lg">
+      <div className="flex justify-center items-center py-2">
+        <h1 className="text-2xl font-bold mr-2">React Deep Diff</h1>
+        <ExternalLink href="https://github.com/gera2ld/react-deep-diff">
+          <img src="https://img.shields.io/github/stars/gera2ld/react-deep-diff?style=social" alt="GitHub" />
+        </ExternalLink>
+      </div>
       <div className="flex">
         {items.map((item, i) => (
           <div className="flex-1" key={i}>
@@ -122,8 +91,9 @@ export function App() {
           </div>
         ))}
       </div>
-      <div className="flex-1 whitespace-pre">
-        <JsonDiff obj1={items[0].obj} obj2={items[1].obj} />
+      <DeepDiff className="flex-1" obj1={items[0]?.obj} obj2={items[1]?.obj} />
+      <div className="text-center py-2">
+        Powered by <ExternalLink href="https://github.com/gera2ld/deepdiff">@gera2ld/deepdiff</ExternalLink> and <ExternalLink href="https://github.com/gera2ld/format-json">@gera2ld/format-json</ExternalLink> - designed by <ExternalLink href="https://github.com/gera2ld">Gerald</ExternalLink>
       </div>
     </div>
   );

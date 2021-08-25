@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branch:
+      - master
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        persist-credentials: false
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+    - name: Build
+      run: yarn && yarn build:demo
+    - name: Deploy to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@releases/v3
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        BASE_BRANCH: master
+        BRANCH: gh-pages
+        FOLDER: dist-demo
+        SINGLE_COMMIT: true

@@ -4,13 +4,13 @@
     "module": "es6",
     "moduleResolution": "node",
     "declaration": true,
-    "emitDeclarationOnly": true,
     "outDir": "types",
     "allowSyntheticDefaultImports": true,
     "jsx": "react"
   },
   "include": [
     "src/**/*.ts",
-    "src/**/*.tsx"
+    "src/**/*.tsx",
+    "test/**/*.ts"
   ]
 }

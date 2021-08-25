@@ -1,0 +1,35 @@
+.diff {
+  @apply whitespace-pre-wrap;
+  background: #2e303c;
+  color: white;
+}
+
+.removed {
+  background: #632f34;
+}
+
+.added {
+  background: #044b53;
+}
+
+.empty {
+  background: #363946;
+}
+
+.line {
+  @apply flex;
+}
+
+.marker {
+  @apply w-8 text-center;
+  &.removed:not(.empty)::before {
+    content: '-';
+  }
+  &.added:not(.empty)::before {
+    content: '+';
+  }
+}
+
+.content {
+  @apply flex-1 min-w-0 break-words;
+}

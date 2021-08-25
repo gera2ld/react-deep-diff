@@ -1,21 +1,16 @@
 const gulp = require('gulp');
 const log = require('fancy-log');
 const rollup = require('rollup');
-const del = require('del');
 
-const DIST = 'dist';
+const DIST = 'dist-demo';
 
 function loadConfig() {
-  const rollupConfig = require('./rollup.conf');
+  const rollupConfig = require('./rollup.demo.conf');
   return rollupConfig;
 }
 
-function clean() {
-  return del([DIST, 'types']);
-}
-
 function copy() {
-  return gulp.src('src/public/**')
+  return gulp.src('demo/public/**')
     .pipe(gulp.dest(DIST));
 }
 
@@ -54,6 +49,5 @@ function watch() {
   watchJs();
 }
 
-exports.clean = clean;
 exports.build = gulp.series(copy, buildJs);
 exports.dev = gulp.series(copy, watch);

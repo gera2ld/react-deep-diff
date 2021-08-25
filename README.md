@@ -1,21 +1,29 @@
 # react-deep-diff
 
-This project is generated from [@gera2ld/generator-rollup](https://github.com/gera2ld/generator-rollup).
+React component to show diff between two objects.
 
-## Development
+👉🏻 [Demo](https://gera2ld.github.io/react-deep-diff/).
 
-``` sh
-$ yarn dev
+![demo](https://user-images.githubusercontent.com/3139113/131153042-b9348dae-e18d-416e-bf9b-ecf0ccdfc57a.png)
+
+## Installation
+
+```bash
+$ yarn add react-deep-diff
 ```
 
-## Building
+## Usage
 
-```sh
-$ yarn build
-```
+```js
+import { DeepDiff } from 'react-deep-diff';
 
-## Lint
-
-``` sh
-$ yarn lint
+function App() {
+  return (
+    <DeepDiff
+      className="my-diff"
+      obj1={obj1}
+      obj2={obj2}
+    />
+  );
+}
 ```
