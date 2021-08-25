@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+
+body {
+  @apply text-gray-800;
+}
+
+textarea {
+  @apply block w-full h-64 border resize-none outline-none border-gray-400;
+  &:focus {
+    @apply border-gray-600;
+  }
+  &.error {
+    @apply bg-red-100;
+  }
+}
+
+@tailwind utilities;
