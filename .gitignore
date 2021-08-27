@@ -3,7 +3,6 @@ node_modules
 *.lock
 /.idea
 /dist
-/dist-demo
 /.nyc_output
 /coverage
 /types

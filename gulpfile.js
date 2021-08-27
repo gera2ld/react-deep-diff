@@ -2,7 +2,7 @@ const gulp = require('gulp');
 const log = require('fancy-log');
 const rollup = require('rollup');
 
-const DIST = 'dist-demo';
+const DIST = 'dist/demo';
 
 function loadConfig() {
   const rollupConfig = require('./rollup.demo.conf');
@@ -10,7 +10,7 @@ function loadConfig() {
 }
 
 function copy() {
-  return gulp.src('demo/public/**')
+  return gulp.src('src/demo/public/**')
     .pipe(gulp.dest(DIST));
 }
 

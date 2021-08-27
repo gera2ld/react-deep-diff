@@ -23,7 +23,7 @@ jobs:
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        BASE_BRANCH: master
+        BASE_BRANCH: main
         BRANCH: gh-pages
-        FOLDER: dist-demo
+        FOLDER: dist/demo
         SINGLE_COMMIT: true

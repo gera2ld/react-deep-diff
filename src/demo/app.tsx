@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { DeepDiff } from '../src/index';
+import { DeepDiff } from '../index';
 
 interface JSONInputItem {
   value: string;

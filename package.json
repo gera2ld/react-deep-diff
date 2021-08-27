@@ -8,7 +8,7 @@
     "prepare": "husky install",
     "dev": "gulp dev",
     "build:demo": "cross-env NODE_ENV=production gulp build",
-    "clean": "del-cli dist dist-demo types",
+    "clean": "del-cli dist types",
     "build:js": "cross-env NODE_ENV=production rollup -c rollup.conf.js",
     "prebuild": "run-s ci clean",
     "build": "run-s ci clean build:types build:js",
