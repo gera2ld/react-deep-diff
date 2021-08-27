@@ -23,6 +23,7 @@
     "dist",
     "types"
   ],
+  "keywords": ["react", "diff", "deep"],
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
