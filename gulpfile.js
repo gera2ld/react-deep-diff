@@ -1,4 +1,5 @@
 const gulp = require('gulp');
+const replace = require('gulp-replace');
 const log = require('fancy-log');
 const rollup = require('rollup');
 
@@ -11,6 +12,7 @@ function loadConfig() {
 
 function copy() {
   return gulp.src('src/demo/public/**')
+    .pipe(replace(/\bTIMESTAMP\b/g, Date.now()))
     .pipe(gulp.dest(DIST));
 }
 
