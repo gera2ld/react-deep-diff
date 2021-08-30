@@ -12,8 +12,8 @@ const FILENAME = 'index';
 const BANNER = `/*! ${pkg.name} v${pkg.version} | ${pkg.license} License */`;
 
 const external = getRollupExternal([
+  ...Object.keys(pkg.dependencies),
   'react',
-  'prismjs',
 ]);
 const bundleOptions = {
   extend: true,
@@ -37,6 +37,7 @@ const rollupConfig = [
           ...postcssOptions,
           extract: path.resolve(DIST, 'style.css'),
         },
+        minimize: false,
       }),
       external,
     },
@@ -52,6 +53,7 @@ const rollupConfig = [
         esm: true,
         extensions: defaultOptions.extensions,
         postcss: postcssOptions,
+        minimize: false,
       }),
       external,
     },
