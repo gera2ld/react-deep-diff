@@ -1,6 +1,6 @@
 {
   "name": "react-deep-diff",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "React component to show diff between objects",
   "author": "Gerald <gera2ld@live.com>",
   "license": "MIT",
