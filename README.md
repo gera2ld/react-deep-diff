@@ -1,5 +1,9 @@
 # react-deep-diff
 
+![NPM](https://img.shields.io/npm/v/react-deep-diff.svg)
+![License](https://img.shields.io/npm/l/react-deep-diff.svg)
+![Downloads](https://img.shields.io/npm/dt/react-deep-diff.svg)
+
 React component to show diff between two objects.
 
 👉🏻 [Demo](https://gera2ld.github.io/react-deep-diff/).

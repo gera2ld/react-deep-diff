@@ -28,11 +28,12 @@ const defaultValues: JSONInputItem[] = [
   },
 ];
 
-function ExternalLink({ href, children }: React.PropsWithChildren<{
+function ExternalLink({ className, href, children }: React.PropsWithChildren<{
+  className?: string;
   href: string;
 }>) {
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer">{children}</a>
+    <a className={className} href={href} target="_blank" rel="noopener noreferrer">{children}</a>
   );
 }
 
@@ -78,8 +79,11 @@ export function App() {
 
   return (
     <div className="flex flex-col h-screen mx-auto max-w-screen-lg">
+      <h1 className="text-2xl font-bold text-center">React Deep Diff</h1>
       <div className="flex justify-center items-center py-2">
-        <h1 className="text-2xl font-bold mr-2">React Deep Diff</h1>
+        <ExternalLink className="mr-2" href="https://npm.im/react-deep-diff">
+          <img src="https://img.shields.io/npm/v/react-deep-diff.svg" alt="NPM" />
+        </ExternalLink>
         <ExternalLink href="https://github.com/gera2ld/react-deep-diff">
           <img src="https://img.shields.io/github/stars/gera2ld/react-deep-diff?style=social" alt="GitHub" />
         </ExternalLink>
