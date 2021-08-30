@@ -19,8 +19,8 @@ const PATH_START = 'pathStart';
 const PATH_END = 'pathEnd';
 
 function compare(a: any, b: any) {
-  if (a[2] < b[2]) return -1;
-  if (a[2] > b[2]) return 1;
+  if (a < b) return -1;
+  if (a > b) return 1;
   return 0;
 }
 

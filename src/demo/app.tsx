@@ -14,7 +14,8 @@ const defaultValues: JSONInputItem[] = [
     value: `\
 {
   "a": [1, 2, 3, 5],
-  "b": 1
+  "b": 1,
+  "c": null
 }`,
   },
   {
