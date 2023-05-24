@@ -10,6 +10,7 @@
     "build:types": "tsc -p tsconfig.prod.json",
     "build:js": "vite build",
     "build": "run-s build:*",
+    "demo": "vite build --config vite.demo.conf.js",
     "prepublishOnly": "run-s build",
     "prettier": "prettier --ignore-path .eslintignore --plugin-search-dir=.",
     "format": "run-s 'prettier -- --write .'",
