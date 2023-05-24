@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { DeepDiff } from '../index';
 
 interface JSONInputItem {
@@ -28,12 +28,23 @@ const defaultValues: JSONInputItem[] = [
   },
 ];
 
-function ExternalLink({ className, href, children }: React.PropsWithChildren<{
+function ExternalLink({
+  className,
+  href,
+  children,
+}: React.PropsWithChildren<{
   className?: string;
   href: string;
 }>) {
   return (
-    <a className={className} href={href} target="_blank" rel="noopener noreferrer">{children}</a>
+    <a
+      className={className}
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {children}
+    </a>
   );
 }
 
@@ -43,7 +54,7 @@ export function App() {
   useEffect(() => {
     const timer = setTimeout(() => {
       let hasChange = false;
-      const newItems = items.map(item => {
+      const newItems = items.map((item) => {
         if (!item.changed) return item;
         hasChange = true;
         let obj: any;
@@ -67,38 +78,59 @@ export function App() {
     return () => clearTimeout(timer);
   }, [items]);
 
-  const getChangeHandler = (i: number): React.ChangeEventHandler<HTMLTextAreaElement> => (e) => {
-    const newItems = [...items];
-    newItems[i] = {
-      ...items[i],
-      value: e.target.value,
-      changed: true,
+  const getChangeHandler =
+    (i: number): React.ChangeEventHandler<HTMLTextAreaElement> =>
+    (e) => {
+      const newItems = [...items];
+      newItems[i] = {
+        ...items[i],
+        value: e.target.value,
+        changed: true,
+      };
+      setItems(newItems);
     };
-    setItems(newItems);
-  };
 
   return (
-    <div className="flex flex-col h-screen mx-auto max-w-screen-lg">
+    <div className="flex flex-col h-screen mx-auto max-w-screen-xl">
       <h1 className="text-2xl font-bold text-center">React Deep Diff</h1>
       <div className="flex justify-center items-center py-2">
         <ExternalLink className="mr-2" href="https://npm.im/react-deep-diff">
-          <img src="https://img.shields.io/npm/v/react-deep-diff.svg" alt="NPM" />
+          <img
+            src="https://img.shields.io/npm/v/react-deep-diff.svg"
+            alt="NPM"
+          />
         </ExternalLink>
         <ExternalLink href="https://github.com/gera2ld/react-deep-diff">
-          <img src="https://img.shields.io/github/stars/gera2ld/react-deep-diff?style=social" alt="GitHub" />
+          <img
+            src="https://img.shields.io/github/stars/gera2ld/react-deep-diff?style=social"
+            alt="GitHub"
+          />
         </ExternalLink>
       </div>
       <div className="flex">
         {items.map((item, i) => (
           <div className="flex-1" key={i}>
-            Object {i + 1}:
-            <textarea className={item.error ? 'error' : ''} value={item.value} onChange={getChangeHandler(i)} />
+            Object {i ? 'To' : 'From'}:
+            <textarea
+              className={item.error ? 'error' : ''}
+              value={item.value}
+              onChange={getChangeHandler(i)}
+            />
           </div>
         ))}
       </div>
       <DeepDiff className="flex-1" obj1={items[0]?.obj} obj2={items[1]?.obj} />
       <div className="text-center py-2">
-        Powered by <ExternalLink href="https://github.com/gera2ld/deepdiff">@gera2ld/deepdiff</ExternalLink> and <ExternalLink href="https://github.com/gera2ld/format-json">@gera2ld/format-json</ExternalLink> - designed by <ExternalLink href="https://github.com/gera2ld">Gerald</ExternalLink>
+        Powered by{' '}
+        <ExternalLink href="https://github.com/gera2ld/deepdiff">
+          @gera2ld/deepdiff
+        </ExternalLink>{' '}
+        and{' '}
+        <ExternalLink href="https://github.com/gera2ld/format-json">
+          @gera2ld/format-json
+        </ExternalLink>{' '}
+        - designed by{' '}
+        <ExternalLink href="https://github.com/gera2ld">Gerald</ExternalLink>
       </div>
     </div>
   );

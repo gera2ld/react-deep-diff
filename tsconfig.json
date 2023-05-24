@@ -1,16 +1,12 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "module": "es6",
+    "target": "esnext",
+    "module": "esnext",
     "moduleResolution": "node",
     "declaration": true,
     "outDir": "types",
     "allowSyntheticDefaultImports": true,
-    "jsx": "react"
+    "jsx": "preserve"
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "test/**/*.ts"
-  ]
+  "include": ["src/**/*", "test/**/*"]
 }

@@ -3,11 +3,6 @@
   "compilerOptions": {
     "emitDeclarationOnly": true
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx"
-  ],
-  "exclude": [
-    "src/demo"
-  ]
+  "include": ["src/**/*"],
+  "exclude": ["src/demo"]
 }

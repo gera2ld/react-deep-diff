@@ -22,12 +22,6 @@ $ yarn add react-deep-diff
 import { DeepDiff } from 'react-deep-diff';
 
 function App() {
-  return (
-    <DeepDiff
-      className="my-diff"
-      obj1={obj1}
-      obj2={obj2}
-    />
-  );
+  return <DeepDiff className="my-diff" obj1={obj1} obj2={obj2} />;
 }
 ```

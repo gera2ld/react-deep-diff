@@ -6,19 +6,20 @@
   "license": "MIT",
   "scripts": {
     "prepare": "husky install",
-    "dev": "gulp dev",
-    "build:demo": "cross-env NODE_ENV=production gulp build",
-    "clean": "del-cli dist types",
-    "build:js": "cross-env NODE_ENV=production rollup -c rollup.conf.js",
-    "prebuild": "run-s ci clean",
-    "build": "run-s ci clean build:types build:js",
+    "dev": "vite dev",
+    "build:types": "tsc -p tsconfig.prod.json",
+    "build:js": "vite build",
+    "build": "run-s build:*",
     "prepublishOnly": "run-s build",
-    "ci": "run-s lint",
-    "lint": "eslint --ext .ts,tsx src",
-    "build:types": "tsc -p tsconfig.prod.json"
+    "prettier": "prettier --ignore-path .eslintignore --plugin-search-dir=.",
+    "format": "run-s 'prettier -- --write .'",
+    "lint:format": "run-s 'prettier -- --check .'",
+    "lint:js": "eslint --ext .ts,tsx src",
+    "lint": "run-s lint:*"
   },
-  "main": "dist/index.common.js",
-  "module": "dist/index.esm.js",
+  "type": "module",
+  "main": "dist/react-deep-diff.js",
+  "module": "dist/react-deep-diff.js",
   "files": [
     "dist",
     "types"
@@ -34,26 +35,23 @@
   },
   "typings": "types/index.d.ts",
   "dependencies": {
-    "@babel/runtime": "^7.15.3",
+    "@babel/runtime": "^7.21.5",
     "@gera2ld/deepdiff": "^0.2.2",
-    "@gera2ld/format-json": "^0.2.3",
-    "prismjs": "^1.24.1"
+    "@gera2ld/format-json": "^0.3.0",
+    "prismjs": "^1.29.0"
   },
   "devDependencies": {
-    "@gera2ld/plaid": "~2.4.0",
-    "@gera2ld/plaid-common-react": "~2.4.0",
-    "@gera2ld/plaid-common-ts": "~2.4.0",
-    "@gera2ld/plaid-rollup": "~2.4.0",
-    "@types/react": "^17.0.19",
-    "@types/react-dom": "^17.0.9",
-    "del-cli": "^4.0.1",
-    "fancy-log": "^1.3.3",
-    "gulp": "^4.0.2",
-    "gulp-replace": "^1.1.3",
-    "husky": "^7.0.2",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "rollup-plugin-browsersync": "^1.3.3"
+    "@gera2ld/plaid": "~2.5.9",
+    "@gera2ld/plaid-common-react": "~2.5.9",
+    "@gera2ld/plaid-common-ts": "~2.5.9",
+    "@gera2ld/plaid-rollup": "~2.5.9",
+    "@types/react": "^18.2.6",
+    "@types/react-dom": "^18.2.4",
+    "@vitejs/plugin-react": "^4.0.0",
+    "husky": "^8.0.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "vite": "^4.3.8"
   },
   "peerDependencies": {
     "react": "*"
